@@ -33,15 +33,17 @@ const Home: NextPage = () => {
         </p>
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
+          <Link href="/examiner/new-exam">
+
           <a
-            href="https://nextjs.org/docs"
             className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-yellow-400 focus:text-yellow-400"
-          >
+            >
             <h3 className="text-2xl font-bold">Take a test &rarr;</h3>
             <p className="mt-4 text-xl">
               Get started by Take a quick text and see how it works.
             </p>
           </a>
+            </Link>
 
           <a
             href="https://nextjs.org/learn"

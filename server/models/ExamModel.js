@@ -15,7 +15,7 @@ const examSchema = new mongoose.Schema(
       required: true,
     },
     exam: {
-      type: Object,
+      type: Array,
       required: true,
     },
     startDate: {
@@ -28,7 +28,7 @@ const examSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    timeRestrictedPerTest: {
+    timePerTest: {
       type: Object,
       default: { isRestricted: false, time: 0 },
     },

@@ -1,18 +1,6 @@
 import React, { useState } from 'react'
 
-export default function NewQuestions({ register, errors }) {
-  const initialState = {
-    qID: 0,
-    qTXT: '',
-    answers: [
-      { aID: 0, aTXT: '' },
-      { aID: 1, aTXT: '' },
-      { aID: 2, aTXT: '' },
-      { aID: 3, aTXT: '' },
-    ],
-    correct: 0,
-  }
-  const [questions, setQuestions] = useState([initialState])
+export default function NewQuestions({ questions, setQuestions }) {
 
   function testHandler(values, i) {
     let newQuestions = [...questions]
@@ -24,33 +12,38 @@ export default function NewQuestions({ register, errors }) {
     <>
       {questions.map((question, i) => (
         <>
-          <input
-            type="text"
-            placeholder="question..."
-            value={questions[i].qTXT}
-            onChange={(e) => testHandler({ qID: i, qTXT: e.target.value }, i)}
-          />
-          {initialState.answers.map((a,j) => (
-            <>
-              <input type="radio" name={i} id={i + '/' + j} onClick={()=>testHandler({correct:j},i)} />
-              <input
-                type="text"
-                placeholder="enter an answer..."
-                value={questions[i]['answers'][j]['aTXT']}
-                onChange={(e) => {
-                  let answers = questions[i]['answers']
-                  answers[j] = { aID: j, aTXT: e.target.value }
-                  testHandler({ answers }, i)
-                }}
-              />
-            </>
-          ))}
+          <div>
+            <span>{i}-{" "}</span>
+            <input
+              type="text"
+              placeholder="question..."
+              value={questions[i].qTXT}
+              onChange={(e) => testHandler({ qID: i, qTXT: e.target.value }, i)}
+            />
+          </div>
+          <div className="flex flex-row flex-wrap justify-between gap-y-4">
+            {Object.keys(questions[0].answers).map((a, j) => (
+              <div className="max-w-[250px]">
+                <input
+                  type="radio"
+                  name={i}
+                  onClick={() => testHandler({ correct: j }, i)}
+                />
+                <input
+                  className={`ml-1 w-5/6`}
+                  type="text"
+                  placeholder="enter an answer..."
+                  value={questions[i]['answers'][j]['aTXT']}
+                  onChange={(e) => {
+                    let answers =  {...questions[i]['answers'], [j]: e.target.value }
+                    testHandler({ answers }, i)
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </>
       ))}
-
-      <button onClick={() =>{console.log(questions); setQuestions((pre) => [...pre, initialState])}}>
-        add question
-      </button>
     </>
   )
 }

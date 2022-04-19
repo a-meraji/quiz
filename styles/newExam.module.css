@@ -25,19 +25,30 @@
     border: 2px solid #d90e0e;
     background-color: #f9caca;
     color: #d90e0e;
+    border-radius: 20px;
 }
+
+.input_success{
+    border: 2px solid #159bd4;
+    background-color: #c1e3f0;
+    color:  #159bd4;
+    border-radius: 20px;
+}
+
 .submit{
-    background-color: limegreen;
-    color: #fff;
+    background-color: #ccecb9;
+    color: limegreen;
     border: 2px solid limegreen;
-    padding: 0.2rem 2rem;
+    padding: 0.4rem 2.5rem;
     border-radius: 20px;
     cursor: pointer;
     transition: 0.3s;
     margin: 1rem auto 0;
-    width:120px;
+    width:150px;
+    font-size:1.1rem;
+    font-weight:700;
 }
 .submit:hover{
-    color:limegreen;
-    background-color: #fff;
+    color:#ccecb9;
+    background-color: limegreen;
 }

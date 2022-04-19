@@ -1,14 +1,14 @@
-import connectDB from "../../../server/middlewares/db/connectDB";
-// controllers
-import readAccount from "../../../controller/accountControllers/readAccount";
-import errorController from "../../../controller/errorController";
+// import connectDB from "../../../server/middlewares/db/connectDB";
+// // controllers
+// import readAccount from "../../../controller/accountControllers/readAccount";
+// import errorController from "../../../controller/errorController";
 
-const reqHandler = (req, res) => {
-  const method = req.method;
-  if (method === "GET") readAccount(req, res);
-  else {
-    errorController(422, "req_method_not_supported", res);
-  }
-};
+// const reqHandler = (req, res) => {
+//   const method = req.method;
+//   if (method === "GET") readAccount(req, res);
+//   else {
+//     errorController(422, "req_method_not_supported", res);
+//   }
+// };
 
-export default connectDB(reqHandler);
+// export default connectDB(reqHandler);

@@ -1,107 +1,101 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import style from '../../styles/newExam.module.css'
+import NewFormExam from '../../components/newFormExam'
 import NewQuestions from '../../components/newQuestion'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setLoading, setNotife } from '../../redux/ducks/layoutSlice'
+
+const initialState = {
+  qID: 0,
+  qTXT: '',
+  answers: {
+    0: '',
+    1: '',
+    2: '',
+    3: '',
+  },
+  correct: 0,
+}
 
 export default function NewExam() {
+  const dispatch = useDispatch()
+  const [questions, setQuestions] = useState([initialState])
+  const [formComplited, setFormComplited] = useState(false)
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm()
-  const onSubmit = (data) => console.log(data)
+    formState: { errors, isDirty, isSubmitting, isValid, isValidating },
+  } = useForm({ mode: 'onChange' })
+  const onSubmit = async (form) => {
+    const qTXTEMpty = questions.some((q) => q.qTXT === '')
+    if (!isValid || qTXTEMpty) return
+    const newExam = {
+      ...form,
+      timePerTest: {
+        isRestricted: form.isTimeRestrictedPerTest,
+        time: form.timePerTest,
+      },
+      exam: questions,
+    }
+    dispatch(setLoading(true))
+    const { data } = await axios.post(`/api/exams/new-exam`, newExam)
+    if (data) dispatch(setLoading(false))
+    if (data.status === 'success') {
+      dispatch(setNotife({ message: data.message, color: 'success' }))
+    } else {
+      dispatch(setNotife({ message: data.message, color: 'danger' }))
+    }
+  }
+
   return (
     <form className={style.container} onSubmit={handleSubmit(onSubmit)}>
-      <input
-      className={errors.examiner&&style.input_error}
-        placeholder="your name..."
-        type="text"
-        name="examiner"
-        id="examiner"
-        {...register('examiner', { required: 'name is obligatory!' })}
-      />
-      {errors.examiner && <p className={style.error}>{errors.examiner.message}</p>}
+      {!formComplited ? (
+        <NewFormExam register={register} errors={errors} />
+      ) : (
+        <>
+          <NewQuestions questions={questions} setQuestions={setQuestions} />
+          <div className="flex w-[90%] flex-row justify-between">
+            <button
+              className={`${style.input_success} min-w-[120px] py-1 px-3 text-sm`}
+              onClick={() => {
+                setQuestions((pre) => [...pre, initialState])
+              }}
+            >
+              add another
+            </button>
+            {questions.length > 1 && (
+              <button
+                className={`${style.input_error}  min-w-[120px] py-1 px-3 text-sm`}
+                onClick={() => {
+                  setQuestions((pre) => {
+                    let newQs = [...pre]
+                    newQs.pop()
+                    return newQs
+                  })
+                }}
+              >
+                delete the last
+              </button>
+            )}
+          </div>
+        </>
+      )}
 
-      <input
-      className={errors.username&&style.input_error}
-        placeholder="your username..."
-        type="text"
-        name="username"
-        id="username"
-        {...register('username', { required: 'username is obligatory!' })}
-      />
-      {errors.username && <p className={style.error}>{errors.username.message}</p>}
+      {!formComplited && (
+        <button
+          disabled={!isValid || !isDirty}
+          onClick={() => setFormComplited((pre) => !pre)}
+        >
+          continue
+        </button>
+      )}
 
-      <div>
-        <input type="checkbox" name="timeRestricted" id="timeRestricted" />
-        <label htmlFor="timeRestricted">Add Time Restriction</label>
-      </div>
-
-      <input
-      className={errors.name&&style.input_error}
-        placeholder="exam name..."
-        type="text"
-        name="name"
-        id="name"
-        {...register('name', { required: 'exam name is obligatory!' })}
-      />
-      {errors.name && <p className={style.error}>{errors.name.message}</p>}
-
-      <div>
-        <label hrmlFor="startDate">start Date & Time</label>
-        <br />
-        <input
-          type="datetime-local"
-          name="startDate"
-          id="startDate"
-          {...register('startDate')}
-        />
-      </div>
-
-      <div>
-        <label hrmlFor="endDate">End Date & Time</label>
-        <br />
-        <input
-          type="datetime-local"
-          name="endDate"
-          id="endDate"
-          {...register('endDate')}
-        />
-      </div>
-
-      <div>
-        <input
-          type="checkbox"
-          name="isTimeRestrictedPerTest"
-          id="isTimeRestrictedPerTest"
-        />
-        <label htmlFor="isTimeRestrictedPerTest">
-          Add Time Restriction to each question
-        </label>
-
-        <input
-          placeholder="0s"
-          type="nubmer"
-          id="timeRestrictedPerTes"
-          name="timeRestrictedPerTes"
-        />
-      </div>
-
-      <div>
-        <input type="checkbox" name="isEditable" id="isEditable" />
-        <label htmlFor="isEditable">
-          Allow examinee access to previous quiestions
-        </label>
-      </div>
-
-      <div>
-        <input defaultChecked type="checkbox" name="isSuffle" id="isSuffle" />
-        <label htmlFor="isSuffle">Shuffle order of questions and answers</label>
-      </div>
-
-      <NewQuestions />
-
-      <button className={style.submit} type="submit">submit</button>
+      <button className={style.submit} type="submit">
+        submit
+      </button>
     </form>
   )
 }
