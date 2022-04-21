@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function NewQuestions({ questions, setQuestions }) {
 
@@ -11,14 +11,14 @@ export default function NewQuestions({ questions, setQuestions }) {
   return (
     <>
       {questions.map((question, i) => (
-        <>
+        <div key={i}>
           <div>
             <span>{i}-{" "}</span>
             <input
               type="text"
               placeholder="question..."
               value={questions[i].qTXT}
-              onChange={(e) => testHandler({ qID: i, qTXT: e.target.value }, i)}
+              onChange={(e) => testHandler({ qID: i.toString(), qTXT: e.target.value }, i)}
             />
           </div>
           <div className="flex flex-row flex-wrap justify-between gap-y-4">
@@ -27,7 +27,7 @@ export default function NewQuestions({ questions, setQuestions }) {
                 <input
                   type="radio"
                   name={i}
-                  onClick={() => testHandler({ correct: j }, i)}
+                  onClick={() => testHandler({ correct: j.toString() }, i)}
                 />
                 <input
                   className={`ml-1 w-5/6`}
@@ -35,14 +35,14 @@ export default function NewQuestions({ questions, setQuestions }) {
                   placeholder="enter an answer..."
                   value={questions[i]['answers'][j]['aTXT']}
                   onChange={(e) => {
-                    let answers =  {...questions[i]['answers'], [j]: e.target.value }
+                    let answers =  {...questions[i]['answers'], [j.toString()]: e.target.value }
                     testHandler({ answers }, i)
                   }}
                 />
               </div>
             ))}
           </div>
-        </>
+        </div>
       ))}
     </>
   )

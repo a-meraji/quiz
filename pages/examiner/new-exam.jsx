@@ -41,10 +41,11 @@ export default function NewExam() {
       exam: questions,
     }
     dispatch(setLoading(true))
-    const { data } = await axios.post(`/api/exams/new-exam`, newExam)
+    const { data } = await axios.post(`/api/exams`, newExam)
     if (data) dispatch(setLoading(false))
     if (data.status === 'success') {
       dispatch(setNotife({ message: data.message, color: 'success' }))
+      console.log("_id: ", data._id);
     } else {
       dispatch(setNotife({ message: data.message, color: 'danger' }))
     }

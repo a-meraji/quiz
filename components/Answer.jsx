@@ -14,16 +14,10 @@ function Answer({ answer,i, qID, setSelected, selected }) {
 
   return (
     <div>
-      <input type="radio" id={i} name={questionIndex} checked={answer===selected} value={answer} onClick={setAnswer} />
+      <input type="radio" id={i} name={questionIndex} checked={answer===selected} value={answer} onClick={setAnswer} onChange={()=>{}} />
       <label htmlFor={i}>{answer}</label>
     </div>
   )
 }
 
 export default Answer
-/**
- 
-
-
-
- */

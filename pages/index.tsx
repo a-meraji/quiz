@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
           Welcome to{' '}
-          <Link href="/exam">
+          <Link href="/intro-exam">
           <a className="text-yellow-400">
             Simple Quiz App
           </a>

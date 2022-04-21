@@ -3,7 +3,7 @@ import quiestions from '../data/questions.js'
 import Test from '../components/test.jsx'
 import {useSelector, useDispatch} from "react-redux";
 
-function Exam() {
+function IntroExam() {
   const dispatch = useDispatch();
   const {questionIndex}= useSelector(state => state.exam);
   console.log(questionIndex);
@@ -14,4 +14,4 @@ function Exam() {
   )
 }
 
-export default Exam
+export default IntroExam

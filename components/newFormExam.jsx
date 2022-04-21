@@ -81,7 +81,7 @@ function NewFormExam({ register, errors }) {
         </label>
 
         <input
-          placeholder="0s"
+          placeholder="0"
           type="nubmer"
           id="timePerTest"
           name="timePerTest"
