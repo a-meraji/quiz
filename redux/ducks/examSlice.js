@@ -1,17 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
+  isStarted: false,
   questionIndex: 0,
-  _id: "",
-  name: "",
-  startDate: "",
-  endDate: "",
+  _id: '',
+  name: '',
+  startDate: '',
+  endDate: '',
   isTimeRestricted: false,
   timePerTest: 0,
   isEditable: true,
   isShuffle: true,
   exam: [{}],
   answers: [],
-  result: "",
+  examSubmited: false,
+  result: '',
   wrongAnswerds: [],
 }
 
@@ -19,17 +21,17 @@ const examSlice = createSlice({
   name: 'exam',
   initialState,
   reducers: {
+    toggleIsStarted: (state) => {
+      state.isStarted = !state.isStarted
+    },
     toggleQuestionIndex: (state, action) => {
       const index = action.payload === 'inc' ? 1 : -1
-      return { ...state, questionIndex: state.questionIndex + index }
+      state.questionIndex += index
     },
     setQuestionIndex: (state, action) => {
-      const index = action.payload
-      return { ...state, questionIndex: index }
+      state.questionIndex = action.payload
     },
-    getExam: (state, action) => {
-      return { ...state }
-    },
+    getExam: () => {},
     setExam: (state, action) => {
       const {
         _id,
@@ -59,27 +61,28 @@ const examSlice = createSlice({
     setAnswers: (state, action) => {
       const { qID, aID } = action.payload
       let newAnswers = []
-      if(state.answers.length === 0) {newAnswers = [{ qID, aID }]}
-      else{
-        const isIncluded = state.answers.filter(
-          (answer) => answer.qID === qID
-          ).length === 1
-          if (isIncluded) {
-            newAnswers = state.answers.map((answer) =>
+      if (state.answers.length === 0) {
+        newAnswers = [{ qID, aID }]
+      } else {
+        const isIncluded =
+          state.answers.filter((answer) => answer.qID === qID).length === 1
+        if (isIncluded) {
+          newAnswers = state.answers.map((answer) =>
             answer.qID === qID ? { qID, aID } : answer
-            )
-          } else {
-            newAnswers = [...state.answers, { qID, aID }]
-          }
+          )
+        } else {
+          newAnswers = [...state.answers, { qID, aID }]
         }
-      return { ...state, answers: newAnswers }
+      }
+      state.answers = newAnswers
     },
-    sendAnswers: (state, action) => {
-      return { ...state}
-    },
+    sendAnswers: () => {},
     setResult: (state, action) => {
-      const {result, wrongAnswerds} = action.payload
-      return { ...state, result, wrongAnswerds }
+      const { result, wrongAnswerds } = action.payload
+      return { ...state, examSubmited: true, result, wrongAnswerds }
+    },
+    resetExam: () => {
+      return { ...initialState }
     },
   },
 })
@@ -92,6 +95,7 @@ export const {
   setAnswers,
   sendAnswers,
   setResult,
+  resetExam,
 } = examSlice.actions
 
 export default examSlice.reducer

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
-import Test from '../../components/test.jsx'
+import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   toggleQuestionIndex,
   getExam,
   sendAnswers,
 } from '../../redux/ducks/examSlice'
-import { useRouter } from 'next/router'
+import Test from '../../components/test.jsx'
+import ResultModal from '../../components/resultModal.jsx'
 
 function Exam() {
   const router = useRouter()
@@ -18,7 +19,9 @@ function Exam() {
   }, [_id])
 
   const { questionIndex } = useSelector((state) => state.exam)
-  const { exam, answers } = useSelector((state) => state.exam)
+  const { exam, answers, examSubmited, result, wrongAnswerds } = useSelector(
+    (state) => state.exam
+  )
 
   return (
     <div className="relative">
@@ -43,15 +46,13 @@ function Exam() {
           finish
         </button>
       )}
+      {examSubmited && (
+        <ResultModal
+          result={result}
+          wrongAnswerds={wrongAnswerds}
+        />
+      )}
     </div>
   )
 }
 export default Exam
-
-/*
-<ResultModal
-          result={result}
-          wrongAnswerds={wrongAnswerds}
-          setResultModal={setResultModal}
-        />
-*/
