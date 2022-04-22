@@ -5,15 +5,15 @@ import {
 } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import { watcherSaga } from './saga/rootSaga'
-import examSlice from './ducks/examSlice';
-import layoutSlice from './ducks/layoutSlice';
+import examSlice from './ducks/examSlice'
+import layoutSlice from './ducks/layoutSlice'
 
 const sagaMiddleware = createSagaMiddleware()
 
 const reducer = combineReducers({
-    exam: examSlice,
-    layout:layoutSlice,
-});
+  exam: examSlice,
+  layout: layoutSlice,
+})
 
 const store = configureStore({
   reducer,

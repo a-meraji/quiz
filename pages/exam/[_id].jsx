@@ -4,11 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   toggleQuestionIndex,
   getExam,
-  setResult,
+  sendAnswers,
 } from '../../redux/ducks/examSlice'
 import { useRouter } from 'next/router'
-import { setLoading } from '../../redux/ducks/layoutSlice'
-import axios from 'axios'
 
 function Exam() {
   const router = useRouter()
@@ -20,21 +18,7 @@ function Exam() {
   }, [_id])
 
   const { questionIndex } = useSelector((state) => state.exam)
-  const { exam, answers, result, wrongAnswerds } = useSelector(
-    (state) => state.exam
-  )
-
-  async function sendAnswers() {
-    const res = await axios.post(`/api/results`, {
-      _id,
-      answers,
-    })
-    dispatch(setLoading(true))
-console.log("res: ", res.status, !res.status);
-    dispatch(setLoading(!res.status))
-    const { result, wrongAnswerds } = res.data
-    dispatch(setResult({ result, wrongAnswerds }))
-  }
+  const { exam, answers } = useSelector((state) => state.exam)
 
   return (
     <div className="relative">
@@ -55,7 +39,9 @@ console.log("res: ", res.status, !res.status);
       </button>
       <br />
       {questionIndex === exam.length - 1 && (
-        <button onClick={sendAnswers}>finish</button>
+        <button onClick={() => dispatch(sendAnswers({ _id, answers }))}>
+          finish
+        </button>
       )}
     </div>
   )
