@@ -21,8 +21,8 @@ const examSlice = createSlice({
   name: 'exam',
   initialState,
   reducers: {
-    toggleIsStarted: (state) => {
-      state.isStarted = !state.isStarted
+    setIsStarted: (state, action) => {
+      state.isStarted = action.payload
     },
     toggleQuestionIndex: (state, action) => {
       const index = action.payload === 'inc' ? 1 : -1
@@ -88,6 +88,7 @@ const examSlice = createSlice({
 })
 
 export const {
+  setIsStarted,
   toggleQuestionIndex,
   setQuestionIndex,
   getExam,
