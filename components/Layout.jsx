@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 
 export default function Layout({ children }) {
-  const { isLoading } = useSelector((state) => state.layout)
+  const { isLoading, isTriggerd } = useSelector((state) => state.layout)
 
   return (
     <>

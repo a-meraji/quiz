@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import style from '../../styles/newExam.module.css'
 import NewFormExam from '../../components/newFormExam'
 import NewQuestions from '../../components/newQuestion'
+import IdModal from '../../components/IdModa'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setLoading, setNotife } from '../../redux/ducks/layoutSlice'
@@ -23,11 +24,12 @@ export default function NewExam() {
   const dispatch = useDispatch()
   const [questions, setQuestions] = useState([initialState])
   const [formComplited, setFormComplited] = useState(false)
+  const [idModal, setIdModal] = useState({_id:"",show:false});
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isSubmitting, isValid, isValidating },
+    formState: { errors, isDirty, isValid },
   } = useForm({ mode: 'onChange' })
   const onSubmit = async (form) => {
     const qTXTEMpty = questions.some((q) => q.qTXT === '')
@@ -45,7 +47,7 @@ export default function NewExam() {
     if (data) dispatch(setLoading(false))
     if (data.status === 'success') {
       dispatch(setNotife({ message: data.message, color: 'success' }))
-      console.log("_id: ", data._id);
+      setIdModal({_id:data._id ,show:true});
     } else {
       dispatch(setNotife({ message: data.message, color: 'danger' }))
     }
@@ -97,6 +99,7 @@ export default function NewExam() {
       <button className={style.submit} type="submit">
         submit
       </button>
+      {idModal.show && <IdModal _id={idModal._id} setIdModal={setIdModal} />}
     </form>
   )
 }

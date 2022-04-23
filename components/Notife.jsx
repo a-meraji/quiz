@@ -15,7 +15,7 @@ export default function Notife() {
     },[isTriggerd])
 
   return (
-    <div className={`transition-opacity duration-500 ${isTriggerd?"opacity-100":"opacity-0"} fixed top-2 right-2 w-3/4 max-w-[300px] rounded-xl py-5 px-8 ${color} text-white`}>
+    <div className={`transition-opacity duration-500 ${isTriggerd?"opacity-100":"opacity-0 hidden"} fixed top-2 right-2 w-3/4 max-w-[300px] rounded-xl py-5 px-8 ${color} text-white`}>
       {message}
       <style jsx>{`
       .success {
