@@ -34,7 +34,7 @@ const Home: NextPage = () => {
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
           <Link href="/exam/626116a3418c1a402bd69969">
-            <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-yellow-400 focus:text-yellow-400">
+            <a className="mt-6 w-96 rounded-xl border p-6 text-left transition-colors hover:text-yellow-500 hover:border-yellow-500 focus:text-yellow-500">
               <h3 className="text-2xl font-bold">Take a test &rarr;</h3>
               <p className="mt-4 text-xl">
                 Get started by Take a quick text and see how it works!
@@ -43,7 +43,7 @@ const Home: NextPage = () => {
           </Link>
 
           <Link href="/examiner/new-exam">
-            <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-yellow-400 focus:text-yellow-400">
+            <a className="mt-6 w-96 rounded-xl border p-6 text-left transition-colors hover:text-yellow-500 hover:border-yellow-500 focus:text-yellow-500">
               <h3 className="text-2xl font-bold">
                 Create and save a test&rarr;
               </h3>
@@ -54,23 +54,26 @@ const Home: NextPage = () => {
             </a>
           </Link>
 
-          <a
-            href="https://aminblog.vercel.app/"
-            target="_blank"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-yellow-400 focus:text-yellow-400"
-          >
-            <h3 className="text-2xl font-bold">About Me &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Read more about who I am and what I do.
-            </p>
-          </a>
+          <Link href="/about">
+            <a
+              className="mt-6 w-96 rounded-xl border p-6 text-left transition-colors hover:text-yellow-500 hover:border-yellow-500 focus:text-yellow-500"
+            >
+              <h3 className="text-2xl font-bold">About this app &rarr;</h3>
+              <p className="mt-4 text-xl">
+                Read more about why this app is made and what exactly this app
+                do?!
+              </p>
+            </a>
+          </Link>
 
           <a
             href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-yellow-400 focus:text-yellow-400"
+            className="mt-6 w-96 rounded-xl border p-6 text-left transition-colors hover:text-yellow-500 hover:border-yellow-500 focus:text-yellow-500"
           >
             <h3 className="text-2xl font-bold">Contact Me &rarr;</h3>
-            <p className="mt-4 text-xl">I would love to hear your comments and inputs!</p>
+            <p className="mt-4 text-xl">
+              I would love to hear your comments and inputs!
+            </p>
           </a>
         </div>
       </main>
