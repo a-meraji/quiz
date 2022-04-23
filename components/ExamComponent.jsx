@@ -10,7 +10,7 @@ function ExamComponent() {
   )
 
   return (
-    <div className="mx-auto w-11/12 max-w-5xl">
+    <div className="-mt-16 mx-auto w-11/12 max-w-5xl">
       {exam.length > 0 && (
         <Test exam={exam[questionIndex]} index={questionIndex + 1} />
       )}

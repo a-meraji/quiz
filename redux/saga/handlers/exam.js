@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 import { setExam } from '../../ducks/examSlice'
 import { fetchExam } from '../requests/exam'
-import { setLoading } from '../../ducks/layoutSlice'
+import { setLoading, setNotife } from '../../ducks/layoutSlice'
 
 export function* handleGetExam(action) {
   try {
@@ -13,7 +13,7 @@ export function* handleGetExam(action) {
     yield put(setExam({ ...data }))
     yield put(setLoading(false))
   } catch (error) {
-    console.log(error)
     yield put(setLoading(false))
+    yield put(setNotife({ message: "can't find any exam with your given id", color:"warning" }))
   }
 }

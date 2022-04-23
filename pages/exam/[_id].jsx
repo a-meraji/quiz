@@ -10,9 +10,13 @@ function Exam() {
   const dispatch = useDispatch()
   const _id = router.query._id
 
-  const { isStarted, examSubmited, result, wrongAnswerds } = useSelector(
-    (state) => state.exam
-  )
+  const {
+    isStarted,
+    examSubmited,
+    result,
+    wrongAnswerds,
+    _id: examID,
+  } = useSelector((state) => state.exam)
 
   useEffect(async () => {
     if (isStarted) return
@@ -26,10 +30,14 @@ function Exam() {
       ) : (
         // when exam is finished or not started yet
         <button
-          onClick={() => dispatch(setIsStarted(true))}
+          onClick={() =>
+            examID === ''
+              ? router.push('/exam/get-id')
+              : dispatch(setIsStarted(true))
+          }
           className="mx-auto rounded-lg bg-yellow-300 py-5 px-12 hover:bg-yellow-500"
         >
-          start
+          {examID === '' ? 'back' : 'start'}
         </button>
       )}
       {examSubmited && ( // showing the result of exam

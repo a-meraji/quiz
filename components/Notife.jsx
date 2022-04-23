@@ -10,7 +10,7 @@ export default function Notife() {
         if(isTriggerd){
             setTimeout(() => {
                 dispatch(clearNotife())
-            }, 3000);
+            }, 6000);
         }
     },[isTriggerd])
 
