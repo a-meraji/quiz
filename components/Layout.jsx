@@ -1,7 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Loading from './Loading'
 import Notife from './Notife'
-import { useSelector } from 'react-redux'
 import Navbar from './Navbar'
 import Footer from './Footer'
 

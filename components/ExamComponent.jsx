@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleQuestionIndex, sendAnswers } from '../redux/ducks/examSlice'
-import Test from './test.jsx'
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr'
+import Test from './test.jsx'
 
 function ExamComponent() {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ function ExamComponent() {
   )
 
   return (
-    <div className="-mt-16 mx-auto w-11/12 max-w-5xl">
+    <div className="mx-auto -mt-16 w-11/12 max-w-5xl">
       {exam.length > 0 && (
         <Test exam={exam[questionIndex]} index={questionIndex + 1} />
       )}

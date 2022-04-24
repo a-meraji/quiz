@@ -4,6 +4,7 @@ import { IoCloseCircleSharp } from 'react-icons/io5'
 
 function ResultModal({ result, wrongAnswerds }) {
   const dispatch = useDispatch()
+  // onClick => create a file and write down wrong answerd questions then download it
   const downloadTxtFile = () => {
     const element = document.createElement('a')
     const txt = wrongAnswerds.toString().replace(/,/g, '\n')
