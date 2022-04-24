@@ -31,6 +31,7 @@ export default async function readExam(req, res) {
       timePerTest,
       isEditable,
       isShuffle,
+      message: 'Exam found successfully',
     }
     return res.status(200).json(data)
 

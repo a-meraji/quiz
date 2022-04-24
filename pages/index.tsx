@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import { AiFillHeart } from 'react-icons/ai'
 
 const Home: NextPage = () => {
   return (
@@ -65,12 +63,11 @@ const Home: NextPage = () => {
           </Link>
 
           <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="https://aminblog.vercel.app/"
             className="mt-6 w-96 rounded-xl border p-6 text-left transition-colors hover:border-yellow-500 hover:text-yellow-500 focus:text-yellow-500"
           >
-            <h3 className="text-2xl font-bold">Contact Me &rarr;</h3>
+            <h3 className="text-2xl font-bold">My Blog &rarr;</h3>
             <p className="mt-4 text-xl">
-              I would love to hear your comments and inputs!
             </p>
           </a>
         </div>

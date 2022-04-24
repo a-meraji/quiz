@@ -56,9 +56,11 @@ export default function NewExam() {
   return (
     <form className={style.container} onSubmit={handleSubmit(onSubmit)}>
       {!formComplited ? (
+        // form section 1
         <NewFormExam register={register} errors={errors} />
       ) : (
         <>
+        {/* form section 2 */}
           <NewQuestions questions={questions} setQuestions={setQuestions} />
           <div className="flex w-[90%] flex-row justify-between">
             <button
@@ -99,6 +101,7 @@ export default function NewExam() {
       <button className={style.submit} type="submit">
         submit
       </button>
+      {/* after submitting show the created exam's id */}
       {idModal.show && <IdModal _id={idModal._id} setIdModal={setIdModal} />}
     </form>
   )
