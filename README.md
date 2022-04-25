@@ -6,5 +6,5 @@ This example shows how to use Redux and Redux-Saga in a react app, including  **
 Can **`give`** & **`take`**  exam(`create and read`). And get results of the taken exam
 
 ## Deploy
-[live demo](https://quiz-radux.vercel.app/ "quiz-redux-app")
+[live demo](https://quiz-redux.vercel.app/ "quiz-redux-app")
 
