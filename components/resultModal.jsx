@@ -28,7 +28,7 @@ function ResultModal({ result, wrongAnswerds }) {
 
         <h4 className='text-xl'>Your Score:</h4>
         <p className='text-blue-500 text-2xl mt-2 mb-5'>{result}</p>
-        <button className={`transition-colors p-4 rounded-lg ${wrongAnswerds.length === 0? "bg-gray-300":"bg-yellow-300 hover:bg-yellow-500"}`} disabled={wrongAnswerds.length === 0} onClick={downloadTxtFile}>
+        <button className={`transition-colors p-4 rounded-lg ${wrongAnswerds.length === 0? "bg-gray-300 text-gray-600":"bg-yellow-300 hover:bg-yellow-500"}`} disabled={wrongAnswerds.length === 0} onClick={downloadTxtFile}>
           download worng answerd questions
         </button>
          </div>
