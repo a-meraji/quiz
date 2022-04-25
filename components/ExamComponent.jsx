@@ -11,7 +11,7 @@ function ExamComponent() {
 
   return (
     <div className="mx-auto -mt-16 w-11/12 max-w-5xl">
-      <h2 className='mt-5 text-lg'>exam: {name}</h2>
+      <h2 className='my-8 text-lg'>exam: {name}</h2>
       {exam.length > 0 && (
         <Test exam={exam[questionIndex]} index={questionIndex + 1} />
       )}
