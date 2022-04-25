@@ -5,12 +5,13 @@ import Test from './test.jsx'
 
 function ExamComponent() {
   const dispatch = useDispatch()
-  const { questionIndex, _id, exam, answers } = useSelector(
+  const { questionIndex, _id,name, exam, answers } = useSelector(
     (state) => state.exam
   )
 
   return (
     <div className="mx-auto -mt-16 w-11/12 max-w-5xl">
+      <h2 className='mt-5 text-lg'>exam: {name}</h2>
       {exam.length > 0 && (
         <Test exam={exam[questionIndex]} index={questionIndex + 1} />
       )}
