@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
         <div className="mt-5 text-2xl">
           Get started by{' '}
-          <Link href="/exam/626116a3418c1a402bd69969">
+          <Link href="/exam/64abfde08dee5190c4dd5eea">
             <a className="rounded-md bg-gray-100 p-3 font-mono text-lg">
               take a text
             </a>
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         </div>
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <Link href="/exam/626116a3418c1a402bd69969">
+          <Link href="/exam/64abfde08dee5190c4dd5eea">
             <a className="mt-6 w-96 rounded-xl border p-6 text-left transition-colors hover:border-yellow-500 hover:text-yellow-500 focus:text-yellow-500">
               <h3 className="text-2xl font-bold">Take a test &rarr;</h3>
               <p className="mt-4 text-xl">
